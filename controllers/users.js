@@ -5,7 +5,7 @@ const Usuario = require('../models/users.js');
 const usuariosGet = async (req = request, res = response) => {
 
     const { limite = 5, desde = 0 } = req.query;
-    const estado = { state: true }
+    const estado = { state: true };
 
     // const usuarios = await Usuario.find(estado)
     //     .skip(parseInt(desde))
