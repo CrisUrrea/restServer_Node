@@ -26,7 +26,7 @@ const obtenerCategorias = async (req, res = response) => {
     });
 }
 
-const obtenerCategoria = async (req, res = response) => {
+const obtenerCategoriaId = async (req, res = response) => {
 
     const { id } = req.params;
     const categoria = await Categoria.findById(id).populate('usuario', 'name');
@@ -87,7 +87,7 @@ const categoriaDelete = async (req, res = response) => {
 module.exports = {
     crearCategoria,
     obtenerCategorias,
-    obtenerCategoria,
+    obtenerCategoriaId,
     actualizarCategoria,
     categoriaDelete
 }
