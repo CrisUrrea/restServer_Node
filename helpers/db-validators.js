@@ -1,5 +1,9 @@
 const { Categoria, Producto, Role, Usuario } = require('../models/index.js');
 
+/**
+ * 
+ * @param {string} role 
+ */
 const esRoleValido = async (role = '') => {
     const existeRole = await Role.findOne({ role });
     if (!existeRole) {
@@ -7,6 +11,10 @@ const esRoleValido = async (role = '') => {
     }
 }
 
+/**
+ * 
+ * @param {string} email 
+ */
 const emailExiste = async (email = '') => {
     //Verificar si el correo existe
     const existeEmail = await Usuario.findOne({ email });
@@ -15,6 +23,10 @@ const emailExiste = async (email = '') => {
     }
 }
 
+/**
+ * 
+ * @param {string} id 
+ */
 const existeUsuarioPorId = async (id) => {
     //Verificar si el correo existe
     const existeId = await Usuario.findById(id);
@@ -23,6 +35,10 @@ const existeUsuarioPorId = async (id) => {
     }
 }
 
+/**
+ * 
+ * @param {string} id 
+ */
 const categoriaPorId = async (id) => {
     //Verificar si el correo existe
     const existeCategoria = await Categoria.findById(id);
@@ -31,6 +47,10 @@ const categoriaPorId = async (id) => {
     }
 }
 
+/**
+ * 
+ * @param {string} id 
+ */
 const productoPorId = async (id) => {
     //Verificar si el correo existe
     const existeProducto = await Producto.findById(id);
@@ -39,10 +59,25 @@ const productoPorId = async (id) => {
     }
 }
 
+/**
+ * 
+ * @param {string} coleccion 
+ * @param {Array} colecciones 
+ */
+const coleccionesPermitidas = (coleccion = '', colecciones = []) => {
+
+    const incluida = colecciones.includes(coleccion);
+    if (!incluida) {
+        throw new Error(`La coleccion ${coleccion} no es permitida -- ${colecciones}`);
+    }
+    return true;
+}
+
 module.exports = {
     esRoleValido,
     emailExiste,
     existeUsuarioPorId,
     categoriaPorId,
-    productoPorId
+    productoPorId,
+    coleccionesPermitidas
 }
